@@ -44,18 +44,18 @@ function viewDepartments() {
         }
         else {
             var table = new Table({
-		        head: ['Department Id', 'Department Name', 'Overhead Costs','Total Sales'],
+		        head: ['Department Id', 'Department Name', 'Overhead Costs','Total Sales', 'Total Profits'],
 		        style: {
 			        head: ['blue'],
 			        compact: false,
-			        colAligns: ['center','left','right','right']
+			        colAligns: ['center','left','right','right', 'right']
 		        }
 	            });
 
 	        //loops through each item in the mysql database and pushes that information into a new row in the table
 	        for(var i = 0; i < result.length; i++) {
 		         table.push(
-			            [result[i].Department_Id, result[i].Department_Name, result[i].Overhead_Costs, result[i].Total_Sales]
+			            [result[i].Department_Id, result[i].Department_Name, result[i].Overhead_Costs, result[i].Total_Sales, result[i].Total_Profits]
 		        );
 	        }
         
