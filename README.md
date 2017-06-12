@@ -72,7 +72,7 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
    * Updating the bamazon SQL database to reflect the remaining quantity.
    * Once the update goes through, the total cost of the custmer’s purchase should be displayed and a prompt will appear asking if the customer wants to continue shopping. If customer selects the No option, the script will stop running and console “Goodbye”. Otherwise, the customer can select another item to purchase.
 
-![Insufficient](Images/Customer_InsufficientQuantity.jpg)
+![Insufficient](images/Customer_InsufficientQuantity.png)
 
 ### Manager Script (bamazonCustom.js)
 
