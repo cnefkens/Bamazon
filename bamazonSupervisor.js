@@ -90,7 +90,7 @@ function addDepartment() {
                     throw err;
                 }
                 else {
-                    console.log("\r\nDepartment Name: " + answers.addDept + " || Overhead Costs: " + answers.addOverHead + " has successfully been added!\r\n");
+                    console.log("\r\nDepartment Name: " + answers.addDept + " || Overhead Costs: " + answers.addOverhead + " has successfully been added!\r\n");
                     runSupvBamazon();
             } 
         })
