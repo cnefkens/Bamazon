@@ -2,7 +2,7 @@
 
 ## Overview
 
-Bamazon is Amazon-like CLI application built using Node and mySQL. It utilizes NPM packages mySQL and Inquirer.  The application includes 
+Bamazon is Amazon-like CLI application built using Node and mySQL. It utilizes NPM packages mySQL, Inquirer, and CLI-Table.  The application includes 
 three main javascript files with functions related to customers, managers and supervisors. The app will take in orders from customers and 
 deplete stock from the store's inventory and update sales figures. Managers can view inventory, check on low inventory items, add inventory 
 to existing projucts and add new products. Supervisors can view product sales across the store's departments and then provide a summary of 
@@ -32,7 +32,7 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
 
    * stock_quantity (how much of the product is available in stores) 
 
-   *product_sales (product revenue to date) 
+   * product_sales (product revenue to date) 
 
 2. The departments table includes the following columns:
 
@@ -47,34 +47,36 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
 
 ## Instructions for use
 
-### Customer Script (bamazonCustom.js)
+### Customer Script (bamazonCustomer.js)
 
 1. Running this script will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
+![ProductsForSale](images/Customer_ViewProductsForSale.PNG)
 
-
-
-
-2. The app should then prompt users with two messages.
+2. The app should then prompt the user with two messages.
 
    * The first should ask them the ID of the product they would like to buy.
    * The second message should ask how many units of the product they would like to buy.
 
-
+![AskProdId](images/Customer_AskProductId.PNG)
 
 3. Once the customer has placed the order, the script will check if the store has enough of the product to meet the customer's request.
 
-   * If current inventory is insufficient to meet the requested quantity, the app script will log a message indicating `Insufficient quantity on hand!`, and prevent the order from going through.
-
-
-
-4. However, if the store does have enough of the product, customer’s order should be fulfilled, including.
-   * Updating the bamazon SQL database to reflect the remaining quantity.
-   * Once the update goes through, the total cost of the custmer’s purchase should be displayed and a prompt will appear asking if the customer wants to continue shopping. If customer selects the No option, the script will stop running and console “Goodbye”. Otherwise, the customer can select another item to purchase.
+   * If current inventory is insufficient to meet the requested quantity, the app script will log a message indicating 
+     `Insufficient quantity on hand!`, and prevent the order from going through.
 
 ![Insufficient](images/Customer_InsufficientQuantity.PNG)
 
-### Manager Script (bamazonCustom.js)
+4. However, if the store does have enough of the product, the user's order will be fulfilled, including.
+   * Updating the bamazon SQL database to reflect the remaining quantity. It will aslo update the product_sales field in the products
+     table and the total_sales field in the departments table.
+   * Once the update goes through, the total cost of the user’s purchase should be displayed and a prompt will appear asking if 
+     the customer wants to continue shopping. If customer selects the No option, the script will stop running and console “Goodbye”. 
+     Otherwise, the customer can select another item to purchase.
+
+![ShowSaleAmt](images/Customer_ShowSaleAmt.PNG)
+
+### Manager Script (bamazonManager.js)
 
 1. The `bamazonManager.js` script includes 4 manager related menu options: 
 
@@ -83,58 +85,52 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
     * Add to Inventory
     * Add New Product
 
-2. If a manager selects `View Products for Sale`, the script list every available item: the item IDs, names, prices, and quantities.
+![ShowSaleAmt](images/Manager_MenuOptions.PNG)
 
-3. If a manager selects `View Low Inventory`, then it should list all items with a inventory count lower than five.
+2. If a user selects `View Products for Sale`, the script will list every available item: the item IDs, names, prices, and quantities.
 
-4. If a manager selects `Add to Inventory`, your app should display a prompt that will let the manager "add more" of any item currently in the store.
+![ManagerProductsForSale](images/Manager_ProductsForSale.PNG)
 
-5. If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
+3. If a manager selects `View Low Inventory`, then it will list all items with a inventory count lower than five.
+
+![ManagerProductsForSale](images/Manager_LowInventory.PNG)
+
+4. If a user selects `Add to Inventory`, prompts will appear asking the user which item to increase and by how much. The console will 
+display a confirmation after the amount has been added to the item.
+
+![ManagerAddInventory](images/Manager_AddInventory.PNG)
+
+   Rerunning The View Products For Sale option will now show the added inventory in the results:
+![ManagerShowAddedInventory](images/Manager_ShowAddedInventory.PNG)
+
+5. If a user selects `Add New Product`, it will allow the manager to add a completely new product to the store. It will prompt the
+user for the Product Name, Department, Price and starting inventory. The console will display a confirmation once the item has been added
+to the bamazon database.
+
+![ManagerNewProduct](images/Manager_NewProduct.PNG)
+
+6. A user can select the `Exit Bamazon` option to exit the bamazonManager.js script
 
 
-### Challenge #3: Supervisor View (Final Level)
+### Supervisor Script (bamazonSupervisor.js)
 
-1. Create a new MySQL table called `departments`. Your table should include the following columns:
-
-   * department_id
-
-   * department_name
-
-   * over_head_costs (A dummy number you set for each department)
-
-   * total_sales
-
-2. Modify the products table so that theres a product_sales column and modify the `bamazonCustomer.js` app so that this value is updated with each individual products total revenue from each sale.
-
-3. Modify your `bamazonCustomer.js` app so that when a customer purchases anything from the store, the program will calculate the total sales from each transaction.
-
-   * Add the revenue from each transaction to the `total_sales` column for the related department.
-   * Make sure your app still updates the inventory listed in the `products` column.
-
-4. Create another Node app called `bamazonSupervisor.js`. Running this application will list a set of menu options:
+1. The 'bamazonSupervisor.js` script includes two supervisor related menu options:
 
    * View Product Sales by Department
    * Create New Department
 
-5. When a supervisor selects `View Product Sales by Department`, the app should display a summarized table in their terminal/bash window. Use the table below as a guide.
+2. When a user selects the `View Product Sales by Department` option, the console will show deparments sales and profit information
+   including Department Id, Department Name, Overhead Costs, Total Sales and Total Profit. Total Profit is dynamically calculated based
+   on Total Sales - Overhead Costs.
 
-| department_id | department_name | over_head_costs | product_sales | total_profit |
-| ------------- | --------------- | --------------- | ------------- | ------------ |
-| 01            | Electronics     | 10000           | 20000         | 10000        |
-| 02            | Clothing        | 60000           | 100000        | 40000        |
+![SupvDeptSalesSummary](images/Supervisor_DeptSalesSummary.PNG)
 
-6. The `total_profit` should be calculated on the fly using the difference between `over_head_costs` and `total_sales`. `total_profit` should not be stored in any database. You should use a custom alias.
+3. When a user selects the `Create New Department Option', they will receive prompts to enter in the new department name and overhead costs.
+   The console will display a confirmation after the department has been added.
 
-7. If you can't get the table to display properly after a few hours, then feel free to go back and just add `total_profit` to the `departments` table.
+![SupvViewNewDept](images/Supervisor_ViewNewDept.PNG)
 
-   * Hint: You may need to look into aliases in MySQL.
+  Running the `View Product Sales by Department` option again should display the newly created department:
+![SupvNewDept](images/Supervisor_NewDeptartment.PNG)
 
-   * **HINT**: There may be an NPM package that can log the table to the console. What's is it? Good question :)
-
-- - -
-
-### One More Thing
-
-If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
-
-**Good Luck!**
+4. The user can click on the Exit Bamazon option to exit the script.
