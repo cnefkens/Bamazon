@@ -16,8 +16,9 @@ supervisors, respectively.
 
 ## Bamazon Database Overview:
 The bamazon database includes two main tables and three views.
-The tables are named: products and departments
-The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartment
+   *The tables are named: products and departments.
+   *The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartment.
+A Sql script file is included in the reposity that creates relevant database objects (bamazon_db_scripts.sql).
 
 ### Tables
 1. The products table includes the following columns:
@@ -44,6 +45,19 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
 
    * total_sales (Department total sales to date)
 
+### Views
+
+The bamazon database includes 3 views:
+
+1. vw_ProductsForSale
+This view displays fields from products table and orders the results by department and product name.
+
+2. vw_LowInventory
+This view displays fields from the products table where quantity<5 and orders the results by department and product name.
+
+3. vw_SalesByDepartment
+This view displays fields from the departments table and calculates the Total_Profits amount based on Total_Sales - Over_Head_Costs.
+
 
 ## Instructions for use
 
@@ -51,7 +65,7 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
 
 1. Running this script will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
-![ProductsForSale](images/Customer_ViewProductsForSale.PNG)
+![ProductsForSale](images/Customer_ProductsForSale.PNG)
 
 2. The app should then prompt the user with two messages.
 
