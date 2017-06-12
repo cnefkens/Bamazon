@@ -10,7 +10,7 @@ the highest-grossing departments in the store.
 
 ## Bamazon Files Overview:
 The Bamazon application includes a mySQL database named bamazon that contains two tables: products and sales. The database is not included
-in the repository. It includes relevant Node NPM packages (mySQL and Inquirer) and package.json file. Bamazon is compried of has 3 javascript
+in the repository. It includes relevant Node NPM packages (mySQL, Inquirer, and Cli-Table) and package.json file. Bamazon is compried of has 3 javascript
 files: bamazonCustom.js, bamazonManager.js, and bamazonSupervisor.js which contain prompts and functions related to customers, managers and
 supervisors, respectively. 
 
