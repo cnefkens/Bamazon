@@ -1,5 +1,4 @@
 # Bamazon
-# Week of 12 HW: Node.js & MySQL
 
 ## Overview
 
@@ -9,18 +8,18 @@ deplete stock from the store's inventory and update sales figures. Managers can 
 to existing projucts and add new products. Supervisors can view product sales across the store's departments and then provide a summary of 
 the highest-grossing departments in the store.
 
-##Bamazon Files Overview:
+## Bamazon Files Overview:
 The Bamazon application includes a mySQL database named bamazon that contains two tables: products and sales. The database is not included
 in the repository. It includes relevant Node NPM packages (mySQL and Inquirer) and package.json file. Bamazon is compried of has 3 javascript
 files: bamazonCustom.js, bamazonManager.js, and bamazonSupervisor.js which contain prompts and functions related to customers, managers and
 supervisors, respectively. 
 
-##Bamazon Database Overview:
+## Bamazon Database Overview:
 The bamazon database includes two main tables and three views.
 The tables are named: products and departments
 The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartment
 
-###Tables
+### Tables
 1. The products table includes the following columns:
 
    * item_id (unique id for each product)
@@ -45,61 +44,53 @@ The views are named: vw_ProductsForSale, vw_LowInventory, and vw_SalesByDepartme
 
    * total_sales (Department total sales to date)
 
+
 ## Instructions for use
 
 ### Customer Script (bamazonCustom.js)
 
-5. Running this script will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
+1. Running this script will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
 
 
 
 
-6. The app should then prompt users with two messages.
+2. The app should then prompt users with two messages.
 
    * The first should ask them the ID of the product they would like to buy.
    * The second message should ask how many units of the product they would like to buy.
 
 
 
-7. Once the customer has placed the order, the script will check if the store has enough of the product to meet the customer's request.
+3. Once the customer has placed the order, the script will check if the store has enough of the product to meet the customer's request.
 
    * If current inventory is insufficient to meet the requested quantity, the app script will log a message indicating `Insufficient quantity on hand!`, and prevent the order from going through.
 
 
 
-8. However, if the store does have enough of the product, customer’s order should be fulfilled, including.
+4. However, if the store does have enough of the product, customer’s order should be fulfilled, including.
    * Updating the bamazon SQL database to reflect the remaining quantity.
    * Once the update goes through, the total cost of the custmer’s purchase should be displayed and a prompt will appear asking if the customer wants to continue shopping. If customer selects the No option, the script will stop running and console “Goodbye”. Otherwise, the customer can select another item to purchase.
 
-
-
-
+![Insufficient](Images/Customer_InsufficientQuantity.jpg)
 
 ### Manager Script (bamazonCustom.js)
 
-* The `bamazonManager.js` script includes 4 manager related menu options: 
+1. The `bamazonManager.js` script includes 4 manager related menu options: 
 
     * View Products for Sale
     * View Low Inventory
     * Add to Inventory
     * Add New Product
 
-  * If a manager selects `View Products for Sale`, the script list every available item: the item IDs, names, prices, and quantities.
+2. If a manager selects `View Products for Sale`, the script list every available item: the item IDs, names, prices, and quantities.
 
+3. If a manager selects `View Low Inventory`, then it should list all items with a inventory count lower than five.
 
+4. If a manager selects `Add to Inventory`, your app should display a prompt that will let the manager "add more" of any item currently in the store.
 
-  * If a manager selects `View Low Inventory`, then it should list all items with a inventory count lower than five.
+5. If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
 
-  * If a manager selects `Add to Inventory`, your app should display a prompt that will let the manager "add more" of any item currently in the store.
-
-  * If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
-
-- - -
-
-* If you finished Challenge #2 and put in all the hours you were willing to spend on this activity, then rest easy! Otherwise continue to the next and final challenge.
-
-- - -
 
 ### Challenge #3: Supervisor View (Final Level)
 
